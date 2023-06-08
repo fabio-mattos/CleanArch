@@ -6,12 +6,12 @@ package main
 import (
 	"database/sql"
 
-	"github.com/fabio-mattos/20-CleanArch/internal/entity"
-	"github.com/fabio-mattos/20-CleanArch/internal/event"
-	"github.com/fabio-mattos/20-CleanArch/internal/infra/database"
-	"github.com/fabio-mattos/20-CleanArch/internal/infra/web"
-	"github.com/fabio-mattos/20-CleanArch/internal/usecase"
-	"github.com/fabio-mattos/20-CleanArch/pkg/events"
+	"github.com/fabio-mattos/GolangCleanArch/internal/entity"
+	"github.com/fabio-mattos/GolangCleanArch/internal/event"
+	"github.com/fabio-mattos/GolangCleanArch/internal/infra/database"
+	"github.com/fabio-mattos/GolangCleanArch/internal/infra/web"
+	"github.com/fabio-mattos/GolangCleanArch/internal/usecase"
+	"github.com/fabio-mattos/GolangCleanArch/pkg/events"
 	"github.com/google/wire"
 )
 
