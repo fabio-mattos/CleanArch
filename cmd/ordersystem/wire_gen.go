@@ -8,12 +8,12 @@ package main
 
 import (
 	"database/sql"
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
-	"github.com/devfullcycle/20-CleanArch/internal/event"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/database"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/web"
-	"github.com/devfullcycle/20-CleanArch/internal/usecase"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	"github.com/fabio-mattos/20-CleanArch/internal/entity"
+	"github.com/fabio-mattos/20-CleanArch/internal/event"
+	"github.com/fabio-mattos/20-CleanArch/internal/infra/database"
+	"github.com/fabio-mattos/20-CleanArch/internal/infra/web"
+	"github.com/fabio-mattos/20-CleanArch/internal/usecase"
+	"github.com/fabio-mattos/20-CleanArch/pkg/events"
 	"github.com/google/wire"
 )
 
@@ -31,6 +31,13 @@ func NewWebOrderHandler(db *sql.DB, eventDispatcher events.EventDispatcherInterf
 	orderCreated := event.NewOrderCreated()
 	webOrderHandler := web.NewWebOrderHandler(eventDispatcher, orderRepository, orderCreated)
 	return webOrderHandler
+}
+
+
+func NewListOrdersUseCase(db *sql.DB) *usecase.ListOrdersUseCase {
+	orderRepository := database.NewOrderRepository(db)
+	listOrdersUseCase := usecase.NewListOrdersUseCase(orderRepository)
+	return listOrdersUseCase
 }
 
 // wire.go:
