@@ -8,13 +8,13 @@ package main
 
 import (
 	"database/sql"
-	"github.com/google/wire"
 	"github.com/fabio-mattos/GolangCleanArch/internal/entity"
-	"github.com/fabio-mattos/GolangCleanArch/internal/infra/database"
 	"github.com/fabio-mattos/GolangCleanArch/internal/event"
+	"github.com/fabio-mattos/GolangCleanArch/internal/infra/database"
 	"github.com/fabio-mattos/GolangCleanArch/internal/infra/web"
 	"github.com/fabio-mattos/GolangCleanArch/internal/usecase"
 	"github.com/fabio-mattos/GolangCleanArch/pkg/events"
+	"github.com/google/wire"
 )
 
 import (
@@ -30,17 +30,17 @@ func NewCreateOrderUseCase(db *sql.DB, eventDispatcher events.EventDispatcherInt
 	return createOrderUseCase
 }
 
-func NewListOrdersUseCase(db *sql.DB) *usecase.ListOrdersUseCase {
-	orderRepository := database.NewOrderRepository(db)
-	listOrdersUseCase := usecase.NewListOrdersUseCase(orderRepository)
-	return listOrdersUseCase
-}
-
 func NewWebOrderHandler(db *sql.DB, eventDispatcher events.EventDispatcherInterface) *web.WebOrderHandler {
 	orderRepository := database.NewOrderRepository(db)
 	orderCreated := event.NewOrderCreated()
 	webOrderHandler := web.NewWebOrderHandler(eventDispatcher, orderRepository, orderCreated)
 	return webOrderHandler
+}
+
+func NewListOrdersUseCase(db *sql.DB) *usecase.ListOrdersUseCase {
+	orderRepository := database.NewOrderRepository(db)
+	listOrdersUseCase := usecase.NewListOrdersUseCase(orderRepository)
+	return listOrdersUseCase
 }
 
 // wire.go:
