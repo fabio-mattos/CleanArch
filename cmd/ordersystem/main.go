@@ -23,6 +23,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+// Teste
 func main() {
 	configs, err := configs.LoadConfig(".")
 	if err != nil {

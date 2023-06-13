@@ -1,21 +1,22 @@
-## CleanArch com Golang
+## Desafio 03 - Go Expert - Clean Architecture 
+
 Coloquei a mão na massa para fixar o aprendizado da aquitetura limpa.
 Neste desafio, criei a listagem das orders.
 
 Listagem feita com:
 
 - Endpoint REST (GET /order)
-
 - Service ListOrders com GRPC
-
 - Query ListOrders GraphQL
 
 
 ## Como Testar
 
-1) Subir o banco de dados
+1) Com o git clonar o repositporio 
 
-No home do projeto, matar tudo do docker e subir o docker-compose.
+2) Subir o banco de dados com docker:
+
+  Na pasta home do projeto, matar tudo do docker e subir o docker-compose.
 
     docker rm -f
     
@@ -26,30 +27,37 @@ No home do projeto, matar tudo do docker e subir o docker-compose.
     docker-compose exec mysql bash
 
     mysql -uroot -p orders
+    password: root
 
     CREATE TABLE orders (id varchar(255) NOT NULL, price float NOT NULL, tax float NOT NULL, final_price float NOT NULL, PRIMARY KEY (id));
 
 
-
-
 3) Subir a aplicação.
-    Entrar na pasta ordersystem.
-     cd cmd/ordersystem
+    Entrar na pasta ordersystem
+     -> cd cmd/ordersystem
   
-    go run main.go wire_gen.go
+       go run main.go wire_gen.go
 
 
-4) Testar via HTTP
+### Endpoints REST
 
-Abrir o arquivo 
- api/create_order.http
+- `POST localhost:8000/order` - endpoint para gerar uma novo pedido.
+- `GET localhost:8000/list_orders` - endpont para listar todas as ordens.
 
+### GraphQL
 
-5)  Testar via GRPC 
-Novo terminal
-evans -r repl
-call CreateOrder
+- `localhost:8080`
 
+###  gRPC
 
-6) Testar via GraphQL 
-localhost:8080
+- `CreateOrder` - criar um novo pedido
+- `ListOrders` - listar pedidos
+
+### Acesso RabbitMQ
+ 
+endpoint: http://localhost:15672
+
+usuário: guest
+senha: guest
+
+ 
