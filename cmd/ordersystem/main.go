@@ -36,7 +36,9 @@ func main() {
 	}
 	defer db.Close()
 
-	rabbitMQChannel := getRabbitMQChannel(fmt.Sprintf("amqp://%s:%s@%s:%s/%s", configs.MQUser, configs.MQPass, configs.MQHost, configs.MQPort, configs.MQName))
+	//rabbitMQChannel := getRabbitMQChannel(fmt.Sprintf("amqp://%s:%s@%s:%s/%s", configs.MQUser, configs.MQPass, configs.MQHost, configs.MQPort, configs.MQName))
+
+	rabbitMQChannel := getRabbitMQChannel("amqp://guest:guest@localhost:5672/")
 
 	eventDispatcher := events.NewEventDispatcher()
 	eventDispatcher.Register("OrderCreated", &handler.OrderCreatedHandler{
