@@ -47,6 +47,17 @@ Listagem feita com:
 ### GraphQL
 
 - `localhost:8080`
+# Teste a  listagem
+query test {
+    orders{
+    id
+    Price
+    Tax
+    FinalPrice
+    }
+}
+
+
 
 ###  gRPC
 
